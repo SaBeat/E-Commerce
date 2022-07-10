@@ -35,9 +35,14 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun initListeners(){
         forgotBinding?.btnResetPassword?.setOnClickListener {
-            val email = forgotBinding?.etForgotPassword?.text.toString()
-            Snackbar.make(requireView(),"Reset Password",Snackbar.LENGTH_SHORT).show()
-            forgotViewModel.handleEvent(ForgotUiEvent.ResetPassword(email))
+            val email = forgotBinding?.etForgotEmail?.text.toString().trim()
+            if(email.isEmpty()){
+                forgotBinding?.etForgotEmail?.error = "Email is empty"
+            }else{
+                Snackbar.make(requireView(),"Reset Password",Snackbar.LENGTH_SHORT).show()
+                forgotViewModel.handleEvent(ForgotUiEvent.ResetPassword(email))
+            }
+
         }
     }
 

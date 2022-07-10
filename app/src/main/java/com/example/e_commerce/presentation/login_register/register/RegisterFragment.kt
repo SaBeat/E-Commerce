@@ -39,17 +39,17 @@ class RegisterFragment : Fragment() {
 
     private fun initListeners() {
         registerBinding?.apply {
-            bvRegister.setOnClickListener {
-                val username = etPersonName.text.toString().trim()
-                val email = etEmailAddress.text.toString().trim()
-                val password = etPassword.text.toString().trim()
+            btnRegister.setOnClickListener {
+                val username = etRegisterUsername.text.toString().trim()
+                val email = etRegisterEmail.text.toString().trim()
+                val password = etRegisterPassword.text.toString().trim()
 
                 if (username.isEmpty()) {
-                    etPersonName.error = "Username is empty"
+                    etRegisterUsername.error = "Username is empty"
                 } else if (email.isEmpty()) {
-                    etEmailAddress.error = "Email is empty"
+                    etRegisterEmail.error = "Email is empty"
                 } else if (password.isEmpty()) {
-                    etPassword.error = "Password is empty"
+                    etRegisterPassword.error = "Password is empty"
                 } else {
 
                     val sharedPref =
