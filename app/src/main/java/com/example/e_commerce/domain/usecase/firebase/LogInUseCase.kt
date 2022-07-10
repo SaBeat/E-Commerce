@@ -17,6 +17,7 @@ class LogInUseCase @Inject constructor(
         emit(Resource.Loading)
         try {
             val logIn = firebaseAuthRepository.signIn(authModel)
+            emit(Resource.Success(logIn))
         }catch (e:Exception){
             emit(Resource.Error(e.localizedMessage))
         }

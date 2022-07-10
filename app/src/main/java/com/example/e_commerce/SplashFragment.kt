@@ -1,5 +1,6 @@
 package com.example.e_commerce
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,10 +28,19 @@ class SplashFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        val sharedPref = activity?.getSharedPreferences(
+            "getSharedPref", Context.MODE_PRIVATE
+        )
+        val pref = sharedPref?.getString("currentUser", null)
         Handler(Looper.myLooper()!!).postDelayed({
-            findNavController().navigate(R.id.loginFragment)
-        },5000)
+            if(pref!=null){
+                findNavController().navigate(R.id.homeFragment)
+            }else{
+                findNavController().navigate(R.id.loginRegisterFragment)
+            }
+//            findNavController().navigate(R.id.loginRegisterFragment)
+
+        },2000)
 
         super.onViewCreated(view, savedInstanceState)
     }

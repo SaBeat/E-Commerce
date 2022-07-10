@@ -1,5 +1,6 @@
 package com.example.e_commerce.presentation.login_register.login
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,8 +19,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-     private var loginBinding:FragmentLoginBinding?= null
-    private val loginViewModel:LoginViewModel by viewModels()
+    private var loginBinding: FragmentLoginBinding? = null
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,39 +38,52 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         loginBinding?.apply {
             btnLogIn.setOnClickListener {
                 val email = etLoginEmail.text.toString().trim()
                 val password = etLoginPassword.text.toString().trim()
 
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     etLoginEmail.error = "Email chould not empty"
                 }
-                if(password.isEmpty()){
+                else if (password.isEmpty()) {
                     etLoginPassword.error = "Password chould not empty"
-                }
-                val auth = AuthModel(email,password)
-                loginViewModel.handleEvent(LoginUiEvent.Login(auth))
-                lifecycleScope.launch{
-                    loginViewModel._uiState.collect{state ->
-                        state.isLoggedIn.let { loggedIn ->
-                            if(loggedIn==true){
-                                Snackbar.make(
-                                    requireView(),
-                                    "SUCCESS_LOGIN",
-                                    Snackbar.LENGTH_LONG
-                                ).show()
-                                findNavController().navigate(R.id.homeFragment)
-                            }else{
+                }else {
+                    val auth = AuthModel(email, password)
+                    loginViewModel.handleEvent(LoginUiEvent.Login(auth))
+                    lifecycleScope.launch {
+                        loginViewModel._uiState.collect { state ->
+                            state.isLoggedIn.let { loggedIn ->
+                                if (loggedIn == true) {
+                                    Snackbar.make(
+                                        requireView(),
+                                        "SUCCESS_LOGIN",
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                    findNavController().navigate(R.id.homeFragment)
+                                } else {
 
+                                }
                             }
                         }
                     }
                 }
 
+                val sharedPref =
+                    activity?.getSharedPreferences(
+                        "getSharedPref",
+                        Context.MODE_PRIVATE
+                    )
+                with(sharedPref?.edit()) {
+                    this?.putString("currentUser", email)
+                    this?.apply()
+                }
 
+            }
 
+            txtLoginForgotPassword.setOnClickListener {
+                findNavController().navigate(R.id.forgotPasswordFragment)
             }
         }
     }

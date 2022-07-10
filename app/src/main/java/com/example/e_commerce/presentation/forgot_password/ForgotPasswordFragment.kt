@@ -10,8 +10,9 @@ import com.example.e_commerce.R
 import com.example.e_commerce.databinding.ActivityMainBinding
 import com.example.e_commerce.databinding.FragmentForgotPasswordBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ForgotPasswordFragment : Fragment() {
 
     private var forgotBinding: FragmentForgotPasswordBinding? = null

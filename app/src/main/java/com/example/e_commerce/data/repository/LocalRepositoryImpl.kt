@@ -8,6 +8,7 @@ import javax.inject.Inject
 class LocalRepositoryImpl @Inject constructor(
     private val userDao: UserDao
 ) :LocalRepository{
+
     override suspend fun insertUserToDatabase(user: User) {
          userDao.inserUser(user)
     }
@@ -15,4 +16,7 @@ class LocalRepositoryImpl @Inject constructor(
     override suspend fun getCurrentUser(userId: String): User {
         return userDao.getCurrentUser(userId)
     }
+
+    override suspend fun login(userName: String, userPassword: String): User =
+        userDao.login(userName, userPassword)
 }
