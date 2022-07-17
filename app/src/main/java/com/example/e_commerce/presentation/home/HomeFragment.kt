@@ -32,10 +32,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.loginRegisterFragment)
         }
 
-        homeBinding?.btnExitProfile?.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            findNavController().navigate(R.id.loginRegisterFragment)
-        }
+
+
     }
 
     override fun onDestroy() {
