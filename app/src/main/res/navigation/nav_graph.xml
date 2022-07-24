@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginRegisterFragment"
             app:destination="@id/loginRegisterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -74,4 +77,13 @@
         android:name="com.example.e_commerce.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.e_commerce.presentation.categories.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
 </navigation>

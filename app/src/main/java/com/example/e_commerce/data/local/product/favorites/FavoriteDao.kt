@@ -16,6 +16,6 @@ interface FavoriteDao {
     @Update
     suspend fun update(favorites: Favorites)
 
-    @Query("Select * from collection_db where currentUserId=:userId")
+    @Query("Select * from favorites_db where currentUserId=:userId")
     fun getFavoriteProducts(userId:String): Flow<List<Favorites>>
 }

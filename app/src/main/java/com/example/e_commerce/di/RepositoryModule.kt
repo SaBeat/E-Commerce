@@ -3,8 +3,10 @@ package com.example.e_commerce.di
 import com.example.e_commerce.data.local.user.UserDao
 import com.example.e_commerce.data.repository.FirebaseAuthRepositoryImpl
 import com.example.e_commerce.data.repository.LocalRepositoryImpl
+import com.example.e_commerce.data.repository.RemoteRepositoryImpl
 import com.example.e_commerce.domain.repository.FirebaseAuthRepository
 import com.example.e_commerce.domain.repository.LocalRepository
+import com.example.e_commerce.domain.repository.RemoteRepository
 import com.example.e_commerce.domain.usecase.local.user.GetCurrentUserFromDatabaseUseCase
 import com.example.e_commerce.domain.usecase.local.user.InsertUserToDatabaseUseCase
 import dagger.Binds
@@ -21,6 +23,11 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindLocalRepository(localRepository: LocalRepositoryImpl): LocalRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRemoteRepository(remoteRepository: RemoteRepositoryImpl): RemoteRepository
+
 
     @Binds
     @Singleton

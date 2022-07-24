@@ -1,34 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home_categories"
-        android:layout_width="0dp"
+    <ProgressBar
+        android:layout_weight="1"
+        android:id="@+id/progressBar_cyclic"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="2dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:text="Categories"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:minHeight="40dp"
+        android:minWidth="40dp" />
 
-    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-        android:id="@+id/carouselRecyclerview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home_categories" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_home_discount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="Discounts"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_product" />
+
+            <TextView
+                android:id="@+id/text_home_categories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="Categories"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+                android:id="@+id/carouselRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_home_categories" />
+
+            <TextView
+                android:id="@+id/text_home_products"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="New Products"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/carouselRecyclerview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_home_products">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_discounts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_home_discount"
+                tools:layout_editor_absoluteX="-16dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+

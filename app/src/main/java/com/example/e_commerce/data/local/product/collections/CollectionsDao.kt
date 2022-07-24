@@ -17,5 +17,5 @@ interface CollectionsDao {
     suspend fun update(collection: Collection)
 
     @Query("Select * from collection_db where currentUserId=:currentUserId")
-    suspend fun getCollectionsProduct(currentUserId:String): Flow<List<Collection>>
+     fun getCollectionsProduct(currentUserId:String): Flow<List<Collection>>
 }

@@ -17,5 +17,5 @@ interface BasketDao {
     suspend fun update(basket: Basket)
 
     @Query("Select * from basket_db where currentUserId = :currentUserId")
-    suspend fun getBasketProducts(currentUserId:String): Flow<List<Basket>>
+     fun getBasketProducts(currentUserId:String): Flow<List<Basket>>
 }

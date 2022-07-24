@@ -2,10 +2,22 @@ package com.example.e_commerce.data.local.product
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.e_commerce.data.entities.product.Basket
+import com.example.e_commerce.data.entities.product.Collection
+import com.example.e_commerce.data.entities.product.Favorites
+import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.data.entities.user.User
+import com.example.e_commerce.data.local.product.basket.BasketDao
+import com.example.e_commerce.data.local.product.collections.CollectionsDao
+import com.example.e_commerce.data.local.product.favorites.FavoriteDao
+import com.example.e_commerce.data.local.product.product.ProductDAO
 import com.example.e_commerce.data.local.user.UserDao
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Basket::class,Collection::class,Favorites::class, Product::class], version = 2, exportSchema = false)
 abstract class CommerceDatabase :RoomDatabase(){
     abstract fun userDao():UserDao
+    abstract fun basketDao():BasketDao
+    abstract fun collectionsDao():CollectionsDao
+    abstract fun favoriteDao():FavoriteDao
+    abstract fun productDao():ProductDAO
 }
