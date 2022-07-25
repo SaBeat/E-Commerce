@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.e_commerce.R
+import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.data.model.Category
 import com.example.e_commerce.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -135,7 +136,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        productAdapter = ProductAdapter()
+        productAdapter = ProductAdapter(object: OnProductClickListener{
+            override fun productClick(product: Product) {
+                goDetailFragment(product)
+            }
+        })
         campaignsAdapter = CampaignsAdapter()
 
         categoryAdapter = CategoryAdapter(object : OnCategoryClickListener{
@@ -169,6 +174,17 @@ class HomeFragment : Fragment() {
         }
         findNavController().navigate(
             R.id.action_homeFragment_to_categoryFragment,
+            bundle
+        )
+    }
+
+    private fun goDetailFragment(product : Product){
+        val bundle = Bundle().apply {
+            putParcelable("detail",product)
+        }
+
+        findNavController().navigate(
+            R.id.action_homeFragment_to_detailFragment,
             bundle
         )
     }

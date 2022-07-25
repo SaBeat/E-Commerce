@@ -11,7 +11,7 @@ import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.databinding.ProductItemBinding
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
+class ProductAdapter(private val productClickListener: OnProductClickListener): RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding:ProductItemBinding): RecyclerView.ViewHolder(binding.root){}
 
@@ -62,6 +62,9 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
                 }
             }
 
+        }
+        holder.itemView.setOnClickListener {
+            productClickListener.productClick(list)
         }
 
     }

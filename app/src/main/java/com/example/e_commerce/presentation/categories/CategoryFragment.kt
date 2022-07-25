@@ -41,7 +41,7 @@ class CategoryFragment : Fragment() {
     }
 
     private fun initObservers(){
-        val categoryName = args.categoryName
+        val categoryName = args.category
         viewModel.handleEvent(CategoryUiEvent.GetCategoriesByName(categoryName))
 
         lifecycleScope.launch{
