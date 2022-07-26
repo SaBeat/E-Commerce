@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.R
 import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.databinding.FragmentDetailBinding
+import com.google.android.material.snackbar.Snackbar
 
 class DetailFragment : Fragment() {
     private var detailBinding:FragmentDetailBinding?=null
@@ -37,6 +38,23 @@ class DetailFragment : Fragment() {
             products.productImage?.let {
                 imageDetail.downloadToImageView(it)
             }
+
+            var count  = textInputPrice.text.toString().toInt()
+
+            btnPlus.setOnClickListener {
+                    count++
+                textInputPrice.text = count.toString()
+            }
+
+            btnMinus.setOnClickListener {
+                if(count>1){
+                    count--
+                    textInputPrice.text = count.toString()
+                }else{
+                    Snackbar.make(requireView(),"Miqdar sfirdir ve ya sifirdan kicikdir",Snackbar.LENGTH_SHORT).show()
+                }
+            }
+
             textDetailTitle.text = products.productTitle
             textDetailDescription.text = products.productDescription
 

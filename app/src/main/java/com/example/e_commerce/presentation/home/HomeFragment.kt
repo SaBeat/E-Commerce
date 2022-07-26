@@ -141,7 +141,13 @@ class HomeFragment : Fragment() {
                 goDetailFragment(product)
             }
         })
-        campaignsAdapter = CampaignsAdapter()
+        campaignsAdapter = CampaignsAdapter(
+            object:OnCampaignClickListener{
+                override fun clickCampaign(product: Product) {
+                    goDetailFragment(product)
+                }
+            }
+        )
 
         categoryAdapter = CategoryAdapter(object : OnCategoryClickListener{
             override fun categoryClickListener(categoryName: String) {

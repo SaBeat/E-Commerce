@@ -9,7 +9,7 @@ import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.databinding.ItemCampaignsBinding
 
-class CampaignsAdapter : RecyclerView.Adapter<CampaignsAdapter.MyViewHolder>() {
+class CampaignsAdapter(private val campaignClickListener: OnCampaignClickListener) : RecyclerView.Adapter<CampaignsAdapter.MyViewHolder>() {
 
     val diffUtil = object:DiffUtil.ItemCallback<Product>(){
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
@@ -38,6 +38,9 @@ class CampaignsAdapter : RecyclerView.Adapter<CampaignsAdapter.MyViewHolder>() {
             list.productImage.let {
                 ivCampaigns.downloadToImageView(it.toString())
             }
+        }
+        holder.itemView.setOnClickListener {
+            campaignClickListener.clickCampaign(list)
         }
 
     }
