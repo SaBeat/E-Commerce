@@ -15,9 +15,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.e_commerce.R
+import com.example.e_commerce.data.entities.product.Collection
+import com.example.e_commerce.data.entities.product.Favorites
 import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.data.model.Category
 import com.example.e_commerce.databinding.FragmentHomeBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,8 +34,8 @@ class HomeFragment : Fragment() {
    lateinit var productAdapter: ProductAdapter
    lateinit var campaignsAdapter: CampaignsAdapter
 
-//    @Inject
-//    lateinit var userId: String
+    @Inject
+    lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -140,7 +143,16 @@ class HomeFragment : Fragment() {
             override fun productClick(product: Product) {
                 goDetailFragment(product)
             }
-        })
+        },object:InsertProductToFavoriteClickListener{
+            override fun insertFavorite(product: Product) {
+                insertProductFavorite(product)
+            }
+        },object:InsertProductToCollectionClickListener{
+            override fun insertCollection(product: Product) {
+                insertProductCollection(product)
+            }
+        }
+        )
         campaignsAdapter = CampaignsAdapter(
             object:OnCampaignClickListener{
                 override fun clickCampaign(product: Product) {
@@ -193,6 +205,31 @@ class HomeFragment : Fragment() {
             R.id.action_homeFragment_to_detailFragment,
             bundle
         )
+    }
+
+    private fun insertProductFavorite(product: Product){
+        val favorites = Favorites(
+            product.productTitle,
+            userId,
+            product.productPrice,
+            product.productImage,
+            product.productId
+        )
+
+        viewModel.handleEvent(HomeUIEvent.InsertProductToFavorites(favorites))
+        Snackbar.make(requireView(),"Insert database favorites",Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun insertProductCollection(product: Product){
+        val collections = Collection(
+            product.productTitle,
+            userId,
+            product.productPrice,
+            product.productImage,
+            product.productId
+        )
+        viewModel.handleEvent(HomeUIEvent.InsertProductToCollection(collections))
+        Snackbar.make(requireView(),"Insert database collection",Snackbar.LENGTH_SHORT).show()
     }
 
 

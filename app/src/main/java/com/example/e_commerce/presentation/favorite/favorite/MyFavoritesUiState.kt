@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 data class MyFavoritesUiState(
     val error:String? = null,
-    val favorites: Flow<List<Favorites>>
+    val favorites: Flow<List<Favorites>>?=null
 )
