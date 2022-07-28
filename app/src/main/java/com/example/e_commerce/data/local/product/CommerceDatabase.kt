@@ -13,7 +13,7 @@ import com.example.e_commerce.data.local.product.favorites.FavoriteDao
 import com.example.e_commerce.data.local.product.product.ProductDAO
 import com.example.e_commerce.data.local.user.UserDao
 
-@Database(entities = [User::class, Basket::class,Collection::class,Favorites::class, Product::class], version = 2, exportSchema = false)
+@Database(entities = [User::class, Basket::class,Collection::class,Favorites::class, Product::class], version = 3, exportSchema = false)
 abstract class CommerceDatabase :RoomDatabase(){
     abstract fun userDao():UserDao
     abstract fun basketDao():BasketDao

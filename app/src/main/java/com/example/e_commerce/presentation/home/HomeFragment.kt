@@ -210,6 +210,7 @@ class HomeFragment : Fragment() {
     private fun insertProductFavorite(product: Product){
         val favorites = Favorites(
             product.productTitle,
+            product.productDescription,
             userId,
             product.productPrice,
             product.productImage,
@@ -223,6 +224,7 @@ class HomeFragment : Fragment() {
     private fun insertProductCollection(product: Product){
         val collections = Collection(
             product.productTitle,
+            product.productDescription,
             userId,
             product.productPrice,
             product.productImage,

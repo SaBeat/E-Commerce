@@ -10,8 +10,8 @@ class FavoriteViewPagerAdapter(fragment: Fragment) :FragmentStateAdapter(fragmen
 
     override fun createFragment(position: Int): Fragment {
        return when (position) {
-            1 -> MyFavoritesFragment()
-            2 -> MyCollectionFragment()
+            0 -> MyFavoritesFragment()
+            1 -> MyCollectionFragment()
             else -> MyFavoritesFragment()
         }
     }

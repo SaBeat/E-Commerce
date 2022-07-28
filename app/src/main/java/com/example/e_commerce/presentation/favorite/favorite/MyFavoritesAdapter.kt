@@ -45,6 +45,7 @@ class MyFavoritesAdapter(private val onFavoritesListToDeleteClickHandler: Favori
             }
             textTitle.text = product.productName
             textPrice.text = "$${product.productPrice}"
+            textDescription.text = product.productDescription
 
             btnDelete.setOnClickListener {
                 onFavoritesListToDeleteClickHandler.favoriteDelete(product)

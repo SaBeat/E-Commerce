@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey
 data class Favorites(
     @ColumnInfo(name = "productName")
     var productName: String?,
+    @ColumnInfo(name = "productDescription")
+    var productDescription: String?,
     @ColumnInfo(name = "currentUserId")
     val currentUserId: String?,
     @ColumnInfo(name = "productPrice")
