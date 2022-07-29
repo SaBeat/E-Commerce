@@ -13,6 +13,8 @@
         <entry key="..\:/Users/Sahil Ekberov/Desktop/Android/Android-Kotlin/E_Commerce/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
         <entry key="..\:/Users/Sahil Ekberov/Desktop/Android/Android-Kotlin/E_Commerce/app/src/main/res/menu/bottom_menu.xml" value="0.1796875" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.156" />
+        <entry key="app/src/main/res/drawable/ic_collections.xml" value="0.1635" />
+        <entry key="app/src/main/res/layout/basket_item.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2828125" />

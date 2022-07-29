@@ -5,16 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.R
 import com.example.e_commerce.common.extensions.downloadToImageView
+import com.example.e_commerce.data.entities.product.Basket
 import com.example.e_commerce.databinding.FragmentDetailBinding
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 class DetailFragment : Fragment() {
     private var detailBinding:FragmentDetailBinding?=null
     val args:DetailFragmentArgs by navArgs()
+    val viewModel:DetailViewModel by viewModels()
+
+    @Inject
+    lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,9 +64,24 @@ class DetailFragment : Fragment() {
 
             textDetailTitle.text = products.productTitle
             textDetailDescription.text = products.productDescription
+            textDetailPrice.text = "$${products.productPrice}"
 
             btnBack.setOnClickListener {
                 findNavController().navigateUp()
+            }
+
+            btnAddCart.setOnClickListener{
+                val itemCount = count.toString()
+                val price  = products.productPrice?.toFloat()
+                val basket = Basket(
+                    products.productTitle,
+                    products.productDescription,
+                    itemCount,
+                    userId,
+                    (count * price!!).toString(),
+                    products.productImage
+                )
+                
             }
         }
     }

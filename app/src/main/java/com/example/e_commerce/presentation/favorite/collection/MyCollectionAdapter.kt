@@ -13,9 +13,10 @@ class MyCollectionAdapter(
     private val collectionDeleteClickListener: CollectionDeleteClickListener
 ) : RecyclerView.Adapter<MyCollectionAdapter.MyViewHolder>() {
 
-    class MyViewHolder(val binding:MycollectionItemBinding) : RecyclerView.ViewHolder(binding.root){}
+    class MyViewHolder(val binding: MycollectionItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {}
 
-    val diffUtil = object:DiffUtil.ItemCallback<Collection>(){
+    val diffUtil = object : DiffUtil.ItemCallback<Collection>() {
         override fun areItemsTheSame(oldItem: Collection, newItem: Collection): Boolean {
             return true
         }
@@ -24,14 +25,20 @@ class MyCollectionAdapter(
             return true
         }
     }
-    val differ = AsyncListDiffer(this,diffUtil)
+    val differ = AsyncListDiffer(this, diffUtil)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(MycollectionItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return MyViewHolder(
+            MycollectionItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val list  = differ.currentList[position]
+        val list = differ.currentList[position]
 
         holder.binding.apply {
             list.productImage?.let {
@@ -40,11 +47,12 @@ class MyCollectionAdapter(
             textTitle.text = list.productName
             textDescription.text = list.productDescription
             textPrice.text = "$${list.productPrice}"
+
+            btnDelete.setOnClickListener {
+                collectionDeleteClickListener.collectionDelete(list)
+            }
         }
 
-        holder.binding.btnDelete.setOnClickListener {
-            collectionDeleteClickListener.collectionDelete(list)
-        }
     }
 
     override fun getItemCount(): Int = differ.currentList.size

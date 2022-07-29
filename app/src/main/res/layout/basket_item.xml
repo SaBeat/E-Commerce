@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_basket"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/basket_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="Product Name"
+            app:layout_constraintBottom_toBottomOf="@id/basket_description"
+            app:layout_constraintEnd_toStartOf="@id/basket_delete"
+            app:layout_constraintStart_toEndOf="@id/image_basket"
+            app:layout_constraintTop_toTopOf="@id/image_basket" />
+
+        <TextView
+            android:id="@+id/basket_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="Product Description"
+            app:layout_constraintEnd_toStartOf="@id/basket_delete"
+            app:layout_constraintStart_toEndOf="@id/image_basket"
+            app:layout_constraintTop_toBottomOf="@id/basket_title" />
+
+        <TextView
+            android:id="@+id/basket_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:text="Product Price"
+            app:layout_constraintStart_toEndOf="@id/image_basket"
+            app:layout_constraintTop_toBottomOf="@id/basket_description" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/basket_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_delete"
+            app:borderWidth="0dp"
+            app:fabCustomSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/basket_count" />
+
+        <TextView
+            android:id="@+id/basket_count"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@id/basket_delete"
+            app:layout_constraintEnd_toEndOf="@id/basket_delete"
+            app:layout_constraintStart_toStartOf="@id/basket_delete"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

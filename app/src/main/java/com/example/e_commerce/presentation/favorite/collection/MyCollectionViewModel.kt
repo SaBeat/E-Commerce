@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MyCollectionViewModel @Inject constructor(
   private val getCollectionProductsFromDatabaseUseCase: GetCollectionProductsFromDatabaseUseCase,
-  private val deleteCollectionProductUseCase: DeleteCollectionProductUseCase
+  private val deleteCollectionProductUseCase: DeleteCollectionProductUseCase,
 ) : ViewModel(){
 
     val uiState = MutableStateFlow(MyCollectionUiState())

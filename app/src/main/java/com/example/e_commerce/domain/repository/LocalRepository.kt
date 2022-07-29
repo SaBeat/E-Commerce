@@ -1,9 +1,7 @@
 package com.example.e_commerce.domain.repository
 
-import com.example.e_commerce.data.entities.product.Basket
+import com.example.e_commerce.data.entities.product.*
 import com.example.e_commerce.data.entities.product.Collection
-import com.example.e_commerce.data.entities.product.Favorites
-import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.data.entities.user.User
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +13,7 @@ interface LocalRepository {
     suspend fun insertProductToBasket(basket: Basket)
     suspend fun insertProductToCollection(collection: Collection)
     suspend fun insertProductToFavorites(favorites: Favorites)
+    suspend fun insertProductToPurchased(purchased: Purchased)
     suspend fun deleteProductFromBasket(basket: Basket)
     suspend fun deleteProductFromCollection(collection: Collection)
     suspend fun deleteProductFromFavorite(favorites: Favorites)
@@ -23,5 +22,6 @@ interface LocalRepository {
     suspend fun getCollectionProduct(userId:String):Flow<List<Collection>>
     suspend fun getFavoritesProduct(userId:String):Flow<List<Favorites>>
     suspend fun getBasketProduct(userId:String):Flow<List<Basket>>
+    suspend fun getPurchasedProduct(userId:String):Flow<List<Purchased>>
 
 }
