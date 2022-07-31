@@ -15,7 +15,9 @@
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.156" />
         <entry key="app/src/main/res/drawable/ic_collections.xml" value="0.1635" />
         <entry key="app/src/main/res/layout/basket_item.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.2140625" />
+        <entry key="app/src/main/res/layout/fragment_basket.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.2828125" />
@@ -23,6 +25,8 @@
         <entry key="app/src/main/res/layout/fragment_login_register.xml" value="0.24814814814814815" />
         <entry key="app/src/main/res/layout/fragment_my_collection.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/fragment_my_favorites.xml" value="0.2828125" />
+        <entry key="app/src/main/res/layout/item_basket.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_basket_checkout.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/item_campaigns.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/mycollection_item.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/myfavorites_item.xml" value="0.28177083333333336" />

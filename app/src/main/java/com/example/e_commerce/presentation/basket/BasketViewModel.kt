@@ -6,7 +6,9 @@ import com.example.capstoneproject.domain.usecase.local.product.GetBasketProduct
 import com.example.capstoneproject.domain.usecase.local.product.GetFavoritesProductsFromDatabaseUseCase
 import com.example.e_commerce.common.Resource
 import com.example.e_commerce.data.entities.product.Basket
+import com.example.e_commerce.data.entities.product.Purchased
 import com.example.e_commerce.domain.usecase.local.product.DeleteBasketProductUseCase
+import com.example.e_commerce.domain.usecase.local.product.InsertProductToPurchasedUseCase
 import com.example.e_commerce.domain.usecase.remote.DeleteProductFromBagUseCase
 import com.example.e_commerce.domain.usecase.remote.GetBagProductsByUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,7 +25,7 @@ class BasketViewModel @Inject constructor(
  private val deleteProductFromBagUseCase: DeleteProductFromBagUseCase,
  private val deleteBasketProductUseCase: DeleteBasketProductUseCase,
  private val getBagProductsByUserUseCase: GetBagProductsByUserUseCase,
-
+ private val insertProductToPurchasedUseCase: InsertProductToPurchasedUseCase
 ) : ViewModel(){
 
     val uiState = MutableStateFlow(BasketUiState())
@@ -43,7 +45,9 @@ class BasketViewModel @Inject constructor(
             is BasketUiEvent.DeleteProductFromBag -> {
                 deleteProductFromBag(basketUiEvent.id)
             }
-            else -> {}
+            is BasketUiEvent.InsertPurchasedToDatabase -> {
+                insertPurchasedToDatabase(basketUiEvent.purchased)
+            }
         }
     }
 
@@ -104,6 +108,21 @@ class BasketViewModel @Inject constructor(
                     is Resource.Success -> {
                         uiState.update { state ->
                             state.copy(deleteBag = resultState.data)
+                        }
+                    }
+                    else -> {}
+                }
+            }
+        }
+    }
+
+    fun insertPurchasedToDatabase(purchased: Purchased){
+        viewModelScope.launch {
+            insertProductToPurchasedUseCase.invoke(purchased).collect{resultState ->
+                when(resultState){
+                    is Resource.Error -> {
+                        uiState.update { state ->
+                            state.copy(error = resultState.message)
                         }
                     }
                     else -> {}

@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.data.entities.product.Basket
-import com.example.e_commerce.databinding.BasketItemBinding
+import com.example.e_commerce.databinding.ItemBasketBinding
 
 class BasketAdapter(
     private val basketDeleteClickListener: BasketDeleteClickListener
 ) : RecyclerView.Adapter<BasketAdapter.MyViewHolder>(){
 
-    class MyViewHolder(val binding:BasketItemBinding):RecyclerView.ViewHolder(binding.root){}
+    class MyViewHolder(val binding:ItemBasketBinding):RecyclerView.ViewHolder(binding.root){}
 
     val diffUtil = object:DiffUtil.ItemCallback<Basket>(){
         override fun areItemsTheSame(oldItem: Basket, newItem: Basket): Boolean {
@@ -27,7 +27,7 @@ class BasketAdapter(
     val differ = AsyncListDiffer(this,diffUtil)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(BasketItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return MyViewHolder(ItemBasketBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -35,12 +35,12 @@ class BasketAdapter(
 
         holder.binding.apply {
             list.productImage?.let { imageBasket.downloadToImageView(it) }
-            basketTitle.text = list.productName
-            basketDescription.text = list.productDescription
-            basketCount.text = list.productCount
-            basketPrice.text = list.productPrice
+            textTitle.text = list.productName
+            textDescription.text = list.productDescription
+            textBasketCount.text = list.productCount
+            textPrice.text = list.productPrice
         }
-        holder.itemView.setOnClickListener {
+        holder.binding.btnDelete.setOnClickListener {
             basketDeleteClickListener.deleteBasket(list)
         }
     }
