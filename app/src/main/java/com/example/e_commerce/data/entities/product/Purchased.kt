@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey
 data class Purchased(
     @ColumnInfo(name = "productName")
     var productName: String?,
+    @ColumnInfo(name = "productDescription")
+    var productDescription: String?,
     @ColumnInfo(name = "productCount")
     val productCount: String?,
     @ColumnInfo(name = "currentUserId")

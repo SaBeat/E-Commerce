@@ -21,6 +21,9 @@ interface ProductDAO {
     @Query("SELECT * FROM product_db WHERE productCategory = :category")
     fun getProductByCategories(category: String): Flow<List<Product>>
 
+    @Query("Delete from product_db")
+    suspend fun deleteAllProduct()
+
     @Query("SELECT * FROM product_db WHERE productDescription LIKE :description")
     fun getProductByDescription(description: String): Flow<List<Product>>
 }

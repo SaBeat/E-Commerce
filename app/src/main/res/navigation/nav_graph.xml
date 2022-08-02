@@ -80,7 +80,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.e_commerce.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_purchasedFragment"
+            app:destination="@id/purchasedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.e_commerce.presentation.categories.CategoryFragment"
@@ -102,4 +106,9 @@
             android:name="detail"
             app:argType="com.example.e_commerce.data.entities.product.Product" />
     </fragment>
+    <fragment
+        android:id="@+id/purchasedFragment"
+        android:name="com.example.e_commerce.presentation.purchased.PurchasedFragment"
+        android:label="fragment_purchased"
+        tools:layout="@layout/fragment_purchased" />
 </navigation>

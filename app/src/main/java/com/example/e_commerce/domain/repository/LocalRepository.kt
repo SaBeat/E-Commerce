@@ -3,6 +3,7 @@ package com.example.e_commerce.domain.repository
 import com.example.e_commerce.data.entities.product.*
 import com.example.e_commerce.data.entities.product.Collection
 import com.example.e_commerce.data.entities.user.User
+import com.example.e_commerce.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {

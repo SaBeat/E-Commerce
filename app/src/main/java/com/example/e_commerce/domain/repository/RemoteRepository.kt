@@ -37,4 +37,6 @@ interface RemoteRepository {
 
     suspend fun getCategoriesByUser(user: String): List<String>
 
+    
+
 }

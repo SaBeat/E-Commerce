@@ -73,7 +73,7 @@
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
             android:contentDescription="image_collection_button"
-            android:src="@drawable/ic_collections"
+            android:src="@drawable/ic_delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/text_price" />

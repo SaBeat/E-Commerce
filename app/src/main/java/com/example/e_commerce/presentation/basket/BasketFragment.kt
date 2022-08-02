@@ -1,15 +1,19 @@
 package com.example.e_commerce.presentation.basket
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerce.R
 import com.example.e_commerce.data.entities.product.Basket
@@ -65,6 +69,7 @@ class BasketFragment : Fragment() {
                            basketList.forEach { list ->
                               val purchased = Purchased(
                                  list.productName,
+                                 list.productDescription,
                                  list.productCount,
                                  userId,
                                  list.productPrice,
@@ -82,7 +87,17 @@ class BasketFragment : Fragment() {
                               }
 
                               viewModel.handleEvent(BasketUiEvent.InsertPurchasedToDatabase(purchased))
+
                            }
+                           var total = 0.0
+                           basketList.forEach {list ->
+
+                              val price = list.productPrice?.toDouble()
+                              price?.let { price ->
+                                 total += price
+                              }
+                           }
+                           openProductCheckoutDialog(total)
 
                         }
                      }
@@ -108,14 +123,48 @@ class BasketFragment : Fragment() {
       }
    }
 
-   private fun openBottomSheetDialog(){
-      val dialog = BottomSheetDialog(requireContext())
-      dialog.setContentView(R.layout.item_basket_checkout)
-      val textSelectAddress = dialog.findViewById<TextView>(R.id.text_select_address)
-      val textAddressTitle = dialog.findViewById<TextView>(R.id.text_address_title)
-      val textPrice = dialog.findViewById<TextView>(R.id.text_price)
+   private fun openProductCheckoutDialog(price:Double){
+      val builder = AlertDialog.Builder(requireContext(),R.style.CustomAlertDialog)
+         .create()
+      val view = layoutInflater.inflate(R.layout.item_basket_checkout,null)
+      val  btn_checkout = view.findViewById<Button>(R.id.btn_checkout)
+      val  textPrice = view.findViewById<TextView>(R.id.text_price)
+      builder.setView(view)
 
+      textPrice?.text = price.toString()
 
+      btn_checkout?.setOnClickListener {
+         showSuccessDialog()
+
+         builder.dismiss()
+      }
+
+      builder.setCanceledOnTouchOutside(false)
+      builder.show()
+
+   }
+
+   private fun showSuccessDialog() {
+      val layoutView = LayoutInflater.from(requireContext())
+         .inflate(R.layout.fragment_splash, null, false)
+      val dialogBuilder = AlertDialog.Builder(requireContext())
+      dialogBuilder.setView(layoutView)
+      val alertDialog = dialogBuilder.create()
+
+      val timer = object : CountDownTimer(5000, 1000) {
+         override fun onTick(millisUntilFinished: Long) {
+            alertDialog.show()
+            alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+         }
+
+         override fun onFinish() {
+            alertDialog.dismiss()
+            Snackbar.make(requireView(),"Success Dialog",Snackbar.LENGTH_SHORT).show()
+//            requireView().findNavController()
+//               .navigate(androidx.work.R.id.successOrderFragment)
+         }
+      }
+      timer.start()
    }
 
    private fun delete_Basket(basket: Basket){

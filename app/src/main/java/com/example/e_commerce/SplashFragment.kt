@@ -40,7 +40,7 @@ class SplashFragment : Fragment() {
             }
 //            findNavController().navigate(R.id.loginRegisterFragment)
 
-        },2000)
+        },4000)
 
         super.onViewCreated(view, savedInstanceState)
     }
