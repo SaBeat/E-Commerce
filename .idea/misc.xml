@@ -13,12 +13,15 @@
         <entry key="..\:/Users/Sahil Ekberov/Desktop/Android/Android-Kotlin/E_Commerce/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
         <entry key="..\:/Users/Sahil Ekberov/Desktop/Android/Android-Kotlin/E_Commerce/app/src/main/res/menu/bottom_menu.xml" value="0.1796875" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.156" />
+        <entry key="app/src/main/res/drawable/ic_arrow_back_ios.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_collections.xml" value="0.1635" />
+        <entry key="app/src/main/res/drawable/profile_background.xml" value="0.164" />
         <entry key="app/src/main/res/layout/basket_item.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.2140625" />
+        <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.212109375" />
         <entry key="app/src/main/res/layout/fragment_basket.xml" value="0.2828125" />
-        <entry key="app/src/main/res/layout/fragment_category.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/fragment_category.xml" value="0.212109375" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -30,9 +33,11 @@
         <entry key="app/src/main/res/layout/item_basket.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_basket_checkout.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/item_campaigns.xml" value="0.22604166666666667" />
+        <entry key="app/src/main/res/layout/item_purchased.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/mycollection_item.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/myfavorites_item.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/product_item.xml" value="0.28177083333333336" />
+        <entry key="app/src/main/res/layout/scroll_home_items.xml" value="0.212109375" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.3098958333333333" />
       </map>
     </option>

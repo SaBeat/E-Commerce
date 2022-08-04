@@ -93,6 +93,12 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categoryFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -110,5 +116,9 @@
         android:id="@+id/purchasedFragment"
         android:name="com.example.e_commerce.presentation.purchased.PurchasedFragment"
         android:label="fragment_purchased"
-        tools:layout="@layout/fragment_purchased" />
+        tools:layout="@layout/fragment_purchased" >
+        <action
+            android:id="@+id/action_purchasedFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

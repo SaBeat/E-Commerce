@@ -45,6 +45,9 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
+        detailBinding?.btnBack?.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun initObservers() {

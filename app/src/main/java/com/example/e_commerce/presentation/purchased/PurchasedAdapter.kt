@@ -47,7 +47,6 @@ class PurchasedAdapter : RecyclerView.Adapter<PurchasedAdapter.MyViewHolder>(){
             textTitle.text = list.productName
             textDescription.text = list.productDescription
             textPrice.text = "$${list.productPrice}"
-
         }
 
     }

@@ -3,14 +3,23 @@ package com.example.e_commerce.presentation.categories
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.databinding.ProductItemBinding
+import com.example.e_commerce.presentation.home.InsertProductToCollectionClickListener
+import com.example.e_commerce.presentation.home.InsertProductToFavoriteClickListener
+import com.example.e_commerce.presentation.home.OnProductClickListener
+import com.example.e_commerce.presentation.home.ProductAdapter
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
+class CategoryAdapter(
+    private val insertProductToCollectionClickListener: InsertProductToCollectionClickListener,
+    private val insertProductToFavoriteClickListener: InsertProductToFavoriteClickListener,
+    private val productClickListener: OnProductClickListener
+) : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root){}
 
@@ -27,7 +36,13 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
     val differ = AsyncListDiffer(this,diffUtil)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(ProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        var view = ProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        view.root.post {
+            view.root.layoutParams.width = (parent.width/2.11).toInt()
+            view.root.requestLayout()
+        }
+
+        return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -56,6 +71,18 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
                 }
             }
 
+        }
+
+        holder.itemView.setOnClickListener {
+            productClickListener.productClick(list)
+        }
+
+        holder.binding.floatingActionButton2.setOnClickListener {
+            insertProductToFavoriteClickListener.insertFavorite(list)
+        }
+
+        holder.binding.floatingActionButton3.setOnClickListener {
+            insertProductToCollectionClickListener.insertCollection(list)
         }
     }
 

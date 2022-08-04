@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerce.R
+import com.example.e_commerce.data.entities.product.Purchased
 import com.example.e_commerce.databinding.FragmentPurchasedBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -18,12 +20,12 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class PurchasedFragment : Fragment() {
-  private var purchaedBinding : FragmentPurchasedBinding?=null
-  lateinit var purchasedAdapter: PurchasedAdapter
-  val viewModel : PurchasedViewModel by viewModels()
+    private var purchaedBinding: FragmentPurchasedBinding? = null
+    lateinit var purchasedAdapter: PurchasedAdapter
+    val viewModel: PurchasedViewModel by viewModels()
 
     @Inject
-    lateinit var userId:String
+    lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,14 +43,14 @@ class PurchasedFragment : Fragment() {
         initObservers()
     }
 
-    private fun initObservers(){
+    private fun initObservers() {
         viewModel.handleEvent(PurchasedUiEvent.GetPurchasedProducts(userId))
 
-        lifecycleScope.launch{
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel._uiState.collect{state ->
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel._uiState.collect { state ->
                     state.purchased.let { flowList ->
-                        flowList?.collect{purchasedList ->
+                        flowList?.collect { purchasedList ->
                             purchasedAdapter.differ.submitList(purchasedList)
                         }
                     }
@@ -57,14 +59,19 @@ class PurchasedFragment : Fragment() {
         }
     }
 
-    private fun initRecycler(){
+    private fun initRecycler() {
         purchasedAdapter = PurchasedAdapter()
 
         purchaedBinding?.rvPurchased?.apply {
             adapter = purchasedAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+
+        purchaedBinding?.btnBack?.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
