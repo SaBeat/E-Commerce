@@ -35,8 +35,7 @@ class MainActivity : AppCompatActivity() {
                 mainBinding.bottomNavigationView.visibility = View.GONE
             } else if(destination.id == R.id.forgotPasswordFragment){
                 mainBinding.bottomNavigationView.visibility = View.GONE
-            }
-            else {
+            } else {
                 mainBinding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
