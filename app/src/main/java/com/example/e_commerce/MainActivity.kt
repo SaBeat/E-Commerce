@@ -1,5 +1,6 @@
 package com.example.e_commerce
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,13 +10,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.e_commerce.databinding.ActivityMainBinding
+import com.example.e_commerce.presentation.profile.MyContextWrapper
+import com.example.e_commerce.presentation.profile.MyPreference
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
+    lateinit var myPreference: MyPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         installSplashScreen()
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
@@ -40,4 +45,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun attachBaseContext(newBase: Context?) {
+        myPreference = MyPreference(newBase!!)
+        val lang = myPreference.getLoginCount()
+        super.attachBaseContext(lang?.let { MyContextWrapper.wrap(newBase, it) })
+    }
+
 }

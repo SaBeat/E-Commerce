@@ -1,19 +1,23 @@
 package com.example.e_commerce.presentation.profile
 
 import android.Manifest
+import android.R
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,14 +27,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private var profileBinding: FragmentProfileBinding? = null
     private val viewModel: ProfileViewModel by viewModels()
+    val IS_DARK = "IS_DARK"
+    lateinit var myPreference: MyPreference
+    val languageList = arrayOf("az","en")
 
     companion object{
          val TAKE_PHOTO_CODE = 1222
-         val CHOOSE_PHOTO_FROM_GALLERY_CODE = 100
     }
 
     @Inject
@@ -52,8 +59,20 @@ class ProfileFragment : Fragment() {
             startActivityForResult(image,TAKE_PHOTO_CODE)
         }
 
-        profileBinding?.btnChooseFromGallery?.setOnClickListener {
-            pickImageFromGallery()
+
+        myPreference = MyPreference(requireContext())
+
+        profileBinding?.spinner?.adapter = ArrayAdapter(requireContext(),
+            R.layout.simple_list_item_1,languageList)
+
+        val lang = myPreference.getLoginCount()
+        val index = languageList.indexOf(lang)
+        if(index >= 0){
+            profileBinding?.spinner?.setSelection(index)
+        }
+
+        profileBinding?.btnOk?.setOnClickListener {
+            myPreference.setLoginCount(languageList[profileBinding?.spinner?.selectedItemPosition!!])
         }
 
         return profileBinding!!.root
@@ -61,6 +80,22 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        profileBinding?.apply {
+            switchMode.isChecked = false
+
+            switchMode.setOnCheckedChangeListener{btnView,isChecked ->
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    prefs.edit().putBoolean(IS_DARK, true).apply();
+                    switchMode.text = "Dark"
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    prefs.edit().putBoolean(IS_DARK, false).apply();
+                    switchMode.text = "Light"
+                }
+            }
+        }
 
         initObservers()
 
@@ -72,17 +107,7 @@ class ProfileFragment : Fragment() {
             val images  = data?.extras?.get("data") as Bitmap
             profileBinding?.imageView?.setImageBitmap(images)
         }
-        else if(requestCode== CHOOSE_PHOTO_FROM_GALLERY_CODE && requestCode==RESULT_OK){
-            profileBinding?.imageView?.setImageURI(data?.data)
-        }
     }
-
-    private fun pickImageFromGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, CHOOSE_PHOTO_FROM_GALLERY_CODE)
-    }
-
 
     private fun initObservers() {
         viewModel.handleEvent(ProfileUiEvent.GetCurrentUserFromDatabase(userId))

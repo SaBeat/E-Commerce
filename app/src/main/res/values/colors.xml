@@ -12,5 +12,7 @@
     <color name="card_background">#E6E5E5</color>
     <color name="button_background">#595755</color>
     <color name="button_text">#1c1c1c</color>
+    <color name="colorPrimary">#EF9B9B</color>
+    <color name="colorPrimaryDark">#1c1c1c</color>
 
 </resources>
