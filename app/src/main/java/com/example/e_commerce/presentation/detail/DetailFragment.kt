@@ -1,25 +1,21 @@
 package com.example.e_commerce.presentation.detail
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.e_commerce.R
 import com.example.e_commerce.common.extensions.downloadToImageView
 import com.example.e_commerce.data.entities.product.Basket
 import com.example.e_commerce.databinding.FragmentDetailBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -102,7 +98,7 @@ class DetailFragment : Fragment() {
                     DetailUiEvent.AddProductToBasket(
                         userId,
                         products.productTitle,
-                        (count * price!!).toDouble(),
+                        (count * price).toDouble(),
                         products.productDescription,
                         products.productCategory,
                         products.productImage,

@@ -6,10 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".presentation.favorite.collection.MyCollectionFragment">
 
+    <ImageView
+        android:id="@+id/image_empty_collection"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_collection"
+        app:layout_constraintWidth_percent="0.5" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_collection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

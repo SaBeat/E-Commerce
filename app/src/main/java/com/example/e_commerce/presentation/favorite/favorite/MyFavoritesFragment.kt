@@ -51,8 +51,15 @@ class MyFavoritesFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel._uiState.collect{state ->
                     state.favorites.let { listFav ->
-                        listFav?.collect{
-                            myFavoritesAdapter.differ.submitList(it)
+                        listFav?.collect{list ->
+                            if (list.isNotEmpty()) {
+
+                                favoritesBinding?.apply {
+                                    imageEmptyFav.visibility = View.INVISIBLE
+                                    rvMyFavorites.visibility = View.VISIBLE
+                                }
+                            }
+                            myFavoritesAdapter.differ.submitList(list)
                         }
                     }
                 }

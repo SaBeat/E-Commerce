@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.28177083333333336" />
         <entry key="app/src/main/res/layout/category_item.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.212109375" />
-        <entry key="app/src/main/res/layout/fragment_basket.xml" value="0.2828125" />
+        <entry key="app/src/main/res/layout/fragment_basket.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.212109375" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2828125" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.2828125" />

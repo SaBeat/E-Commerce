@@ -62,6 +62,13 @@ class BasketFragment : Fragment() {
             viewModel._uiState.collect{state ->
                state.basketItem.let { flowList ->
                   flowList?.collect{basketList ->
+                     if(basketList.isNotEmpty()){
+                        basketBinding?.apply {
+                           rvBasket.visibility = View.VISIBLE
+                           btnCheckOut.visibility = View.VISIBLE
+                           imageEmptyBasket.visibility = View.INVISIBLE
+                        }
+                     }
                      basketAdapter.differ.submitList(basketList)
 
                      basketBinding?.apply {

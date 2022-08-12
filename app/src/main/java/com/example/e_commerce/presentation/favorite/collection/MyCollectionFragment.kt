@@ -46,13 +46,20 @@ class MyCollectionFragment : Fragment() {
 
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-              viewModel._uiState.collect{state ->
-                 state.collections.let { flow ->
-                   flow?.collect{list ->
-                       myCollectionAdapter.differ.submitList(list)
-                   }
-                 }
-              }
+                viewModel._uiState.collect { state ->
+                    state.collections.let { flow ->
+                        flow?.collect { list ->
+                            if (list.isNotEmpty()) {
+
+                                collectionBinding?.apply {
+                                    imageEmptyCollection.visibility = View.INVISIBLE
+                                    rvCollection.visibility = View.VISIBLE
+                                }
+                            }
+                                myCollectionAdapter.differ.submitList(list)
+                        }
+                    }
+                }
             }
         }
     }

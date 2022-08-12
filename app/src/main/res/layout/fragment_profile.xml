@@ -13,11 +13,11 @@
         android:layout_marginTop="16dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.33"
+        app:layout_constraintHeight_percent="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_profile"
-        app:layout_constraintWidth_percent="0.6"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintWidth_percent="0.58"
+        android:src="@drawable/man" />
 
     <TextView
         android:id="@+id/text_profile"
@@ -51,91 +51,92 @@
         android:background="@drawable/profile_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_choose_from_gallery"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btn_take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_username"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:text="Take photo"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toStartOf="@+id/btn_choose_from_gallery"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/btn_choose_from_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose from gallery"
-        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_take_photo"
-        app:layout_constraintTop_toTopOf="@+id/btn_take_photo" />
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_username"
+        app:layout_constraintWidth_percent="0.80">
+
+        <TextView
+            android:id="@+id/text_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Sabit"
+            android:textColor="#636363"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="124dp"
+            tools:layout_editor_absoluteY="314dp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_email"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_email"
+        app:layout_constraintWidth_percent="0.80">
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="sabitsadiqli@gmail.com"
+            android:textColor="#636363"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="124dp"
+            tools:layout_editor_absoluteY="353dp" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/text_title_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="Username :"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view_bottom" />
+
 
     <TextView
         android:id="@+id/text_title_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Email :"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/text_title_username"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_username" />
-
-    <TextView
-        android:id="@+id/text_username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Sabit"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_title_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_title_username"
-        app:layout_constraintTop_toTopOf="@+id/text_title_username" />
-
-    <TextView
-        android:id="@+id/text_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="sabitsadiqli@gmail.com"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_title_email"
-        app:layout_constraintEnd_toEndOf="@+id/text_username"
-        app:layout_constraintStart_toStartOf="@+id/text_username"
-        app:layout_constraintTop_toTopOf="@+id/text_title_email" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_username" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
+        android:id="@+id/card_fav"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/card_collection"
+        app:layout_constraintEnd_toStartOf="@+id/card_collection"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -144,45 +145,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="1" />
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/card_collection"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
+        app:layout_constraintEnd_toStartOf="@+id/card_purchased"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView">
+        app:layout_constraintStart_toEndOf="@+id/card_fav">
 
         <TextView
             android:id="@+id/text_collection_count"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="1" />
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/card_purchased"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/card_collection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/materialCardView3">
+        app:layout_constraintStart_toEndOf="@+id/card_collection">
 
         <TextView
             android:id="@+id/text_purchased_count"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="1" />
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -196,27 +202,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_profile" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/text_title_fav_count"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#AEA7A7"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_email"
-        app:layout_constraintVertical_bias="0.425" />
+        android:layout_marginBottom="8dp"
+        android:text="Favorites"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/card_fav"
+        app:layout_constraintEnd_toEndOf="@+id/card_fav"
+        app:layout_constraintStart_toStartOf="@+id/card_fav" />
 
-    <Button
-        android:id="@+id/btn_ok"
+    <TextView
+        android:id="@+id/text_title_collection_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Collection"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/card_collection"
+        app:layout_constraintEnd_toEndOf="@+id/card_collection"
+        app:layout_constraintStart_toStartOf="@+id/card_collection" />
+
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintStart_toStartOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        android:layout_marginBottom="8dp"
+        android:text="Purchased"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/card_purchased"
+        app:layout_constraintEnd_toEndOf="@+id/card_purchased"
+        app:layout_constraintStart_toStartOf="@+id/card_purchased" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
