@@ -1,6 +1,7 @@
 package com.example.e_commerce.domain.usecase.remote
 
 import com.example.e_commerce.common.Resource
+import com.example.e_commerce.data.entities.product.DiscountProduct
 import com.example.e_commerce.data.entities.product.Product
 import com.example.e_commerce.di.IoDispatcher
 import com.example.e_commerce.domain.repository.RemoteRepository

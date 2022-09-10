@@ -18,11 +18,11 @@ class MyCollectionAdapter(
 
     val diffUtil = object : DiffUtil.ItemCallback<Collection>() {
         override fun areItemsTheSame(oldItem: Collection, newItem: Collection): Boolean {
-            return true
+            return oldItem.productId==newItem.productId
         }
 
         override fun areContentsTheSame(oldItem: Collection, newItem: Collection): Boolean {
-            return true
+            return oldItem==newItem
         }
     }
     val differ = AsyncListDiffer(this, diffUtil)

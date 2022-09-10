@@ -16,6 +16,6 @@ interface PurchasedDao {
     @Update
     suspend fun update(purchased: Purchased)
 
-    @Query("Select * from purchaed_db where currentUserId=:userId")
+    @Query("Select * from purchased_db where currentUserId=:userId")
     fun getPurchasedProducts(userId:String): Flow<List<Purchased>>
 }

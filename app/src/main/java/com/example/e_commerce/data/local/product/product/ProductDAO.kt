@@ -2,12 +2,13 @@ package com.example.e_commerce.data.local.product.product
 
 import androidx.room.*
 import com.example.e_commerce.data.entities.product.Product
+import com.example.e_commerce.data.entities.product.ProductsItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProduct(product: Product)
+    suspend fun insertProduct(product: List<Product>)
 
     @Update
     suspend fun updateProduct(product: Product)

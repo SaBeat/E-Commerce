@@ -21,18 +21,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BasketViewModel @Inject constructor(
- private val getBasketProductsFromDatabaseUseCase: GetBasketProductsFromDatabaseUseCase,
- private val deleteProductFromBagUseCase: DeleteProductFromBagUseCase,
- private val deleteBasketProductUseCase: DeleteBasketProductUseCase,
- private val getBagProductsByUserUseCase: GetBagProductsByUserUseCase,
- private val insertProductToPurchasedUseCase: InsertProductToPurchasedUseCase
-) : ViewModel(){
+    private val getBasketProductsFromDatabaseUseCase: GetBasketProductsFromDatabaseUseCase,
+    private val deleteProductFromBagUseCase: DeleteProductFromBagUseCase,
+    private val deleteBasketProductUseCase: DeleteBasketProductUseCase,
+    private val getBagProductsByUserUseCase: GetBagProductsByUserUseCase,
+    private val insertProductToPurchasedUseCase: InsertProductToPurchasedUseCase
+) : ViewModel() {
 
     val uiState = MutableStateFlow(BasketUiState())
-    var _uiState:StateFlow<BasketUiState> = uiState.asStateFlow()
+    var _uiState: StateFlow<BasketUiState> = uiState.asStateFlow()
 
-    fun handleEvent(basketUiEvent: BasketUiEvent){
-        when(basketUiEvent){
+    fun handleEvent(basketUiEvent: BasketUiEvent) {
+        when (basketUiEvent) {
             is BasketUiEvent.GetAllBasketItem -> {
                 getAllBasketItem(basketUiEvent.userId)
             }
@@ -51,10 +51,10 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun getAllBasketItem(userId:String){
+    private fun getAllBasketItem(userId: String) {
         viewModelScope.launch {
-            getBasketProductsFromDatabaseUseCase.invoke(userId).collect{resultState ->
-                when(resultState){
+            getBasketProductsFromDatabaseUseCase.invoke(userId).collect { resultState ->
+                when (resultState) {
                     is Resource.Success -> {
                         uiState.update { state ->
                             state.copy(basketItem = resultState.data)
@@ -71,10 +71,10 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun getBagBasketFromApi(userId: String){
+    private fun getBagBasketFromApi(userId: String) {
         viewModelScope.launch {
-            getBagProductsByUserUseCase.invoke(userId).collect{resultState ->
-                when(resultState){
+            getBagProductsByUserUseCase.invoke(userId).collect { resultState ->
+                when (resultState) {
                     is Resource.Success -> {
                         uiState.update { state ->
                             state.copy(bagProducts = resultState.data)
@@ -86,10 +86,10 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun deleteBasketItem(basket: Basket){
+    private fun deleteBasketItem(basket: Basket) {
         viewModelScope.launch {
-            deleteBasketProductUseCase.invoke(basket).collect{resultState ->
-                when(resultState){
+            deleteBasketProductUseCase.invoke(basket).collect { resultState ->
+                when (resultState) {
                     is Resource.Error -> {
                         uiState.update { state ->
                             state.copy(error = resultState.message)
@@ -101,10 +101,10 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun deleteProductFromBag(id:Int){
-        viewModelScope.launch{
-            deleteProductFromBagUseCase.invoke(id).collect{resultState ->
-                when(resultState){
+    private fun deleteProductFromBag(id: Int) {
+        viewModelScope.launch {
+            deleteProductFromBagUseCase.invoke(id).collect { resultState ->
+                when (resultState) {
                     is Resource.Success -> {
                         uiState.update { state ->
                             state.copy(deleteBag = resultState.data)
@@ -116,10 +116,10 @@ class BasketViewModel @Inject constructor(
         }
     }
 
-    fun insertPurchasedToDatabase(purchased: Purchased){
+    private fun insertPurchasedToDatabase(purchased: Purchased) {
         viewModelScope.launch {
-            insertProductToPurchasedUseCase.invoke(purchased).collect{resultState ->
-                when(resultState){
+            insertProductToPurchasedUseCase.invoke(purchased).collect { resultState ->
+                when (resultState) {
                     is Resource.Error -> {
                         uiState.update { state ->
                             state.copy(error = resultState.message)

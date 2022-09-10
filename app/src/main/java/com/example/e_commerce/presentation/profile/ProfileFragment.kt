@@ -1,17 +1,22 @@
 package com.example.e_commerce.presentation.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.e_commerce.R
 import com.example.e_commerce.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +26,7 @@ import javax.inject.Inject
 class ProfileFragment : Fragment() {
     private var profileBinding: FragmentProfileBinding? = null
     private val viewModel: ProfileViewModel by viewModels()
+    lateinit var mAuth: FirebaseAuth
     private val ISDARK = "IS_DARK"
 
     @Inject
@@ -39,6 +45,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        mAuth = FirebaseAuth.getInstance()
+
+        profileBinding?.btnLogOut?.setOnClickListener {
+            alertForSignOut()
+        }
+
+
         profileBinding?.apply {
             switchMode.isChecked = false
 
@@ -90,14 +103,41 @@ class ProfileFragment : Fragment() {
                             textCollectionCount.text = collection.toString()
                         }
                     }
-                    state.favoriteCount?.let { favorite ->
+                    state.purchasedCount?.let { purchased ->
                         profileBinding?.apply {
-                            textPurchasedCount.text = favorite.toString()
+                            textPurchasedCount.text = purchased.toString()
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun alertForSignOut(){
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("Sign Out")
+        alertDialogBuilder.setMessage("Do you want sign out current user?")
+        alertDialogBuilder.setPositiveButton("Yes"){dialogInterface,_ ->
+
+                val sharedPref =
+                    activity?.getSharedPreferences(
+                        "getSharedPref",
+                        Context.MODE_PRIVATE
+                    )
+                with(sharedPref?.edit()) {
+                    this?.remove("currentUser")
+                    this?.commit()
+                }
+
+               findNavController().navigate(R.id.action_profileFragment_to_loginRegisterFragment)
+                dialogInterface.dismiss()
+        }
+        alertDialogBuilder.setNegativeButton("No"){dialogInterface,_ ->
+            dialogInterface.dismiss()
+        }
+
+        alertDialogBuilder.create()
+        alertDialogBuilder.show()
     }
 
     override fun onDestroy() {

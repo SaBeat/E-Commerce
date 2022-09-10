@@ -18,14 +18,14 @@ class MyFavoritesAdapter(private val onFavoritesListToDeleteClickHandler: Favori
             oldItem: Favorites,
             newItem: Favorites
         ): Boolean {
-            return true
+            return oldItem.productId == newItem.productId
         }
 
         override fun areContentsTheSame(
             oldItem: Favorites,
             newItem: Favorites
         ): Boolean {
-            return true
+            return oldItem == newItem
         }
     }
 
@@ -49,6 +49,7 @@ class MyFavoritesAdapter(private val onFavoritesListToDeleteClickHandler: Favori
 
             btnDelete.setOnClickListener {
                 onFavoritesListToDeleteClickHandler.favoriteDelete(product)
+                notifyDataSetChanged()
             }
         }
     }

@@ -7,6 +7,7 @@ import com.example.e_commerce.data.local.product.CommerceDatabase
 import com.example.e_commerce.data.local.product.basket.BasketDao
 import com.example.e_commerce.data.local.product.collections.CollectionsDao
 import com.example.e_commerce.data.local.product.favorites.FavoriteDao
+import com.example.e_commerce.data.local.product.product.DiscountProductDao
 import com.example.e_commerce.data.local.product.product.ProductDAO
 import com.example.e_commerce.data.local.product.purchased.PurchasedDao
 import com.example.e_commerce.data.local.user.UserDao
@@ -55,5 +56,9 @@ object LocalModule {
     @Provides
     @Singleton
     fun providesPurchasedDao(database:CommerceDatabase):PurchasedDao = database.purchasedDao()
+
+    @Provides
+    @Singleton
+    fun providesDiscountProductDao(database:CommerceDatabase):DiscountProductDao = database.discountProductDao()
 
 }

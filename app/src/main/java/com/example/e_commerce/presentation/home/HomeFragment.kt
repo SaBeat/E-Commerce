@@ -1,5 +1,6 @@
 package com.example.e_commerce.presentation.home
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,7 +24,9 @@ import com.example.e_commerce.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import me.relex.circleindicator.CircleIndicator
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -60,18 +63,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObservers(){
-
-        viewModel.handleEvent(HomeUIEvent.GetAllProducts)
         val user = "suveybesenakucuk"
         val discount = "Discount"
         viewModel.handleEvent(HomeUIEvent.GetCategories(user))
+        viewModel.handleEvent(HomeUIEvent.GetAllProductsFromDatabase)
         viewModel.handleEvent(HomeUIEvent.GetDiscountProducts(discount))
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel._uiState.collect{state ->
-                    state.products.let { productList ->
-                        productAdapter.differ.submitList(productList)
+                    state.getProductsFromDatabase.let{discountList ->
+                        discountList?.collect{productList ->
+                            productAdapter.differ.submitList(productList)
+                        }
+
                     }
                 }
             }
@@ -134,8 +139,8 @@ class HomeFragment : Fragment() {
         categoryList.add(rock)
         categoryList.add(blues)
         categoryList.add(jazz)
-        categoryAdapter.differ.submitList(categoryList)
 
+        categoryAdapter.differ.submitList(categoryList)
     }
 
     private fun initRecyclerView(){

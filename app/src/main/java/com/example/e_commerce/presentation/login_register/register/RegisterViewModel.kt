@@ -24,7 +24,7 @@ class RegisterViewModel @Inject constructor(
     fun handleEvent(event:RegisterUiEvent){
         when(event){
             is RegisterUiEvent.CreatUser ->{
-                creatUser(event.authModel)
+                createUser(event.authModel)
             }
             is RegisterUiEvent.InsertuserToDatabase ->{
                 insertUserToDatabase(event.user)
@@ -32,7 +32,7 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun creatUser(authModel: AuthModel){
+    private fun createUser(authModel: AuthModel){
         viewModelScope.launch {
             createUserUseCase.invoke(authModel).collect{resultState->
                 when(resultState){
@@ -47,7 +47,7 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun insertUserToDatabase(user: User){
+    private fun insertUserToDatabase(user: User){
         viewModelScope.launch {
             insertUserToDatabaseUseCase.invoke(user).collect{resultState->
                 when(resultState){

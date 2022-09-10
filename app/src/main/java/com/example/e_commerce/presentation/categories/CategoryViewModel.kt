@@ -7,7 +7,6 @@ import com.example.capstoneproject.domain.usecase.local.product.InsertProductToF
 import com.example.e_commerce.common.Resource
 import com.example.e_commerce.data.entities.product.Collection
 import com.example.e_commerce.data.entities.product.Favorites
-import com.example.e_commerce.domain.usecase.remote.GetAllProductsByNameUseCase
 import com.example.e_commerce.domain.usecase.remote.GetProductsByCategoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

@@ -16,8 +16,8 @@ class CreateUserUseCase @Inject constructor(
     suspend fun invoke(authModel: AuthModel) = flow {
         emit(Resource.Loading)
         try {
-            val cretaeUser = firebaseAuthRepository.signUpWithEmail(authModel)
-            emit(Resource.Success(cretaeUser))
+            val createUser = firebaseAuthRepository.signUpWithEmail(authModel)
+            emit(Resource.Success(createUser))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage))
         }

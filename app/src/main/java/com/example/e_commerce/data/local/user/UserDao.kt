@@ -7,7 +7,7 @@ import com.example.e_commerce.data.entities.user.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun inserUser(user: User)
+    suspend fun insertUser(user: User)
 
     @Delete
     suspend fun deleteUser(user: User)

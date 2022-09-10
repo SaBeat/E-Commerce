@@ -8,16 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <ProgressBar
-        android:layout_weight="1"
-        android:id="@+id/progressBar_cyclic"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="40dp"
-        android:minWidth="40dp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

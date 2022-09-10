@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseUser
 
 interface FirebaseAuthRepository {
     suspend fun getCurrentUserId():String?
-    suspend fun signIn(auth: AuthModel):FirebaseUser?
+    suspend fun signIn(authModel: AuthModel):FirebaseUser?
     suspend fun signUpWithEmail(auth:AuthModel):FirebaseUser?
     suspend fun forgotPassword(email:String)
 }

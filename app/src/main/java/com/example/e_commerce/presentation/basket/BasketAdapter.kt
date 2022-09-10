@@ -17,7 +17,7 @@ class BasketAdapter(
 
     val diffUtil = object:DiffUtil.ItemCallback<Basket>(){
         override fun areItemsTheSame(oldItem: Basket, newItem: Basket): Boolean {
-            return true
+            return oldItem.productId == newItem.productId
         }
 
         override fun areContentsTheSame(oldItem: Basket, newItem: Basket): Boolean {

@@ -26,11 +26,11 @@ class FirebaseAuthRepositoryImpl @Inject constructor(var firebaseAuth: FirebaseA
         }
     }
 
-    override suspend fun signUpWithEmail(authModel: AuthModel): FirebaseUser? {
+    override suspend fun signUpWithEmail(auth: AuthModel): FirebaseUser? {
         return try{
-            firebaseAuth.createUserWithEmailAndPassword(authModel.email,authModel.password).await()
+            firebaseAuth.createUserWithEmailAndPassword(auth.email,auth.password).await()
             firebaseAuth.currentUser?.updateProfile(userProfileChangeRequest {
-                displayName = authModel.email
+                displayName = auth.email
             })?.await()
             firebaseAuth.currentUser
         }catch (e:Exception){

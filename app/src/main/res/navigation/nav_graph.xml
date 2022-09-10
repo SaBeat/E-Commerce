@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_basketFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_basketFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -84,6 +87,10 @@
         <action
             android:id="@+id/action_profileFragment_to_purchasedFragment"
             app:destination="@id/purchasedFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginRegisterFragment"
+            app:destination="@id/loginRegisterFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -121,4 +128,9 @@
             android:id="@+id/action_purchasedFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.e_commerce.presentation.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

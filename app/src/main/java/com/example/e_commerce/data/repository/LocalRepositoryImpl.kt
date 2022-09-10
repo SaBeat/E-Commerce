@@ -6,6 +6,7 @@ import com.example.e_commerce.data.entities.user.User
 import com.example.e_commerce.data.local.product.basket.BasketDao
 import com.example.e_commerce.data.local.product.collections.CollectionsDao
 import com.example.e_commerce.data.local.product.favorites.FavoriteDao
+import com.example.e_commerce.data.local.product.product.DiscountProductDao
 import com.example.e_commerce.data.local.product.product.ProductDAO
 import com.example.e_commerce.data.local.product.purchased.PurchasedDao
 import com.example.e_commerce.data.local.user.UserDao
@@ -19,11 +20,12 @@ class LocalRepositoryImpl @Inject constructor(
     private val favoriteDao: FavoriteDao,
     private val collectionsDao: CollectionsDao,
     private val productDAO: ProductDAO,
+    private val discountProductDAO: DiscountProductDao,
     private val purchasedDao: PurchasedDao
 ) :LocalRepository{
 
     override suspend fun insertUserToDatabase(user: User) {
-         userDao.inserUser(user)
+         userDao.insertUser(user)
     }
 
     override suspend fun getCurrentUser(userId: String): User {
@@ -33,8 +35,12 @@ class LocalRepositoryImpl @Inject constructor(
     override suspend fun login(userName: String, userPassword: String): User =
         userDao.login(userName, userPassword)
 
-    override suspend fun insertProductToDatabase(product: Product) {
+    override suspend fun insertProductToDatabase(product: List<Product>) {
         productDAO.insertProduct(product)
+    }
+
+    override suspend fun insertDiscountProductToDatabase(productsItem: MutableList<DiscountProduct>) {
+        discountProductDAO.insertDiscount(productsItem)
     }
 
     override suspend fun insertProductToBasket(basket: Basket) {

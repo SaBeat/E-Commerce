@@ -10,11 +10,12 @@ interface LocalRepository {
     suspend fun insertUserToDatabase(user: User)
     suspend fun getCurrentUser(userId: String): User
     suspend fun login(userName: String, userPassword: String): User
-    suspend fun insertProductToDatabase(product: Product)
+    suspend fun insertProductToDatabase(product: List<Product>)
     suspend fun insertProductToBasket(basket: Basket)
     suspend fun insertProductToCollection(collection: Collection)
     suspend fun insertProductToFavorites(favorites: Favorites)
     suspend fun insertProductToPurchased(purchased: Purchased)
+    suspend fun insertDiscountProductToDatabase(productsItem: MutableList<DiscountProduct>)
     suspend fun deleteProductFromBasket(basket: Basket)
     suspend fun deleteProductFromCollection(collection: Collection)
     suspend fun deleteProductFromFavorite(favorites: Favorites)

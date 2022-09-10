@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:tabIndicatorAnimationMode="elastic"
         android:minHeight="?actionBarSize"
+        app:tabRippleColor="#E8E5E5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
